@@ -14,9 +14,7 @@ func TestMap(t *testing.T) {
 		input := []int{1, 2, 3, 4, 5}
 		expected := []string{"1", "2", "3", "4", "5"}
 
-		result := collections.Map(input, func(i int) string {
-			return strconv.Itoa(i)
-		})
+		result := collections.Map(input, strconv.Itoa)
 
 		assert.Equal(t, expected, result)
 	})
@@ -37,9 +35,7 @@ func TestMap(t *testing.T) {
 
 		var expected []string
 
-		result := collections.Map(input, func(i int) string {
-			return strconv.Itoa(i)
-		})
+		result := collections.Map(input, strconv.Itoa)
 
 		assert.Equal(t, expected, result)
 	})
@@ -47,9 +43,7 @@ func TestMap(t *testing.T) {
 	t.Run("handles nil slice", func(t *testing.T) {
 		var input []int
 
-		result := collections.Map(input, func(i int) string {
-			return strconv.Itoa(i)
-		})
+		result := collections.Map(input, strconv.Itoa)
 
 		assert.Nil(t, result)
 	})
