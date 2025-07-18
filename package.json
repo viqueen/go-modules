@@ -1,0 +1,11 @@
+{
+  "name": "@labset/go-template",
+  "version": "1.0.0",
+  "scripts": {
+    "claude": "claude"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@anthropic-ai/claude-code": "^1.0.53"
+  }
+}
