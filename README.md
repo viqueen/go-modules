@@ -1,4 +1,4 @@
-## go-template
+## go-modules
 
 > TODO: description
 

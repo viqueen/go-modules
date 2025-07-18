@@ -1,5 +1,5 @@
 {
-  "name": "@labset/go-template",
+  "name": "@labset/go-modules",
   "version": "1.0.0",
   "scripts": {
     "claude": "claude"

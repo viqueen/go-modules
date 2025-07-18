@@ -14,6 +14,6 @@ linters:
         main:
           allow:
             - $gostd
-            - github.com/viqueen/go-template
+            - github.com/viqueen/go-modules
             - github.com/stretchr/testify
             - github.com/ovechkin-dm/mockio

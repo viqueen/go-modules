@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/ovechkin-dm/mockio/v2/mock"
-	"github.com/viqueen/go-template/pkg/pet"
+	"github.com/viqueen/go-modules/pkg/pet"
 
 	"github.com/stretchr/testify/assert"
 )
