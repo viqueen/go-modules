@@ -20,4 +20,4 @@ jobs:
           version: 2.8.2
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}  # Use a personal access token for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
