@@ -15,8 +15,14 @@ type TestData struct {
 
 func TestRegistry(t *testing.T) {
 	tests := map[string]struct {
-		registry registry.Registry[TestData]
-	}{}
+		registry func() (registry.Registry[TestData], error)
+	}{
+		"Badger": {
+			registry: func() (registry.Registry[TestData], error) {
+				return registry.NewBadgerRegistry[TestData]("testdata/badger")
+			},
+		},
+	}
 
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
@@ -28,8 +34,12 @@ func TestRegistry(t *testing.T) {
 
 				return item
 			}
+
+			reg, err := test.registry()
+			require.NoError(t, err, "Failed to create registry for %s", name)
+
 			suite := newTestSuite[TestData](
-				test.registry,
+				reg,
 				createItem,
 				createUpdated,
 			)
