@@ -12,7 +12,7 @@ type Registry[T any] interface {
 	Read(id string) (*Item[T], error)
 	Delete(id string) (*Item[T], error)
 	ListItems(filter Filter[T]) ([]Item[T], error)
-	ListIDs(filter Filter[T]) ([]string, error)
+	ListIDs() ([]string, error)
 }
 
 func AllFilter[T any]() Filter[T] {

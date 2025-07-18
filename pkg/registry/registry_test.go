@@ -189,7 +189,7 @@ func (s *testSuite[T]) testListIDs(t *testing.T) {
 	}
 
 	// List all IDs
-	ids, err := s.registry.ListIDs(registry.AllFilter[T]())
+	ids, err := s.registry.ListIDs()
 	require.NoError(t, err, "Failed to list IDs")
 
 	// Verify all IDs are present
@@ -243,11 +243,6 @@ func (s *testSuite[T]) testFilteredList(t *testing.T) {
 			"Filtered item ID should contain 'filter-match'",
 		)
 	}
-
-	// Test filtered IDs
-	filteredIDs, err := s.registry.ListIDs(filter)
-	require.NoError(t, err, "Failed to list filtered IDs")
-	assert.Len(t, filteredIDs, 2, "Expected 2 filtered IDs")
 }
 
 func (s *testSuite[T]) testEmptyRegistry(t *testing.T) {
@@ -263,7 +258,7 @@ func (s *testSuite[T]) testEmptyRegistry(t *testing.T) {
 	require.NoError(t, err, "Failed to list items from empty registry")
 	assert.Empty(t, items, "Expected 0 items in empty registry")
 
-	ids, err := s.registry.ListIDs(registry.AllFilter[T]())
+	ids, err := s.registry.ListIDs()
 	require.NoError(t, err, "Failed to list IDs from empty registry")
 	assert.Empty(t, ids, "Expected 0 IDs in empty registry")
 }

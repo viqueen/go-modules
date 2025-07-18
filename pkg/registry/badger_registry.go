@@ -124,7 +124,7 @@ func (b *badgerRegistry[T]) ListItems(filter Filter[T]) ([]Item[T], error) {
 	return items, nil
 }
 
-func (b *badgerRegistry[T]) ListIDs(filter Filter[T]) ([]string, error) {
+func (b *badgerRegistry[T]) ListIDs() ([]string, error) {
 	var ids []string
 
 	err := b.db.View(func(txn *badger.Txn) error {
