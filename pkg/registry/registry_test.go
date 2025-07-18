@@ -14,6 +14,8 @@ type TestData struct {
 }
 
 func TestRegistry(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
 		registry func() (registry.Registry[TestData], error)
 	}{
@@ -26,6 +28,8 @@ func TestRegistry(t *testing.T) {
 
 	for name, test := range tests {
 		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+
 			createItem := func(id string) registry.Item[TestData] {
 				return registry.Item[TestData]{ID: id, Data: TestData{Name: "Test"}}
 			}
@@ -250,7 +254,7 @@ func (s *testSuite[T]) testEmptyRegistry(t *testing.T) {
 	// Ensure registry is empty by deleting all items
 	all, _ := s.registry.ListItems(registry.AllFilter[T]())
 	for _, item := range all {
-		s.registry.Delete(item.ID)
+		_, _ = s.registry.Delete(item.ID)
 	}
 
 	// Test listing empty registry

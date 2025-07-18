@@ -17,3 +17,4 @@ linters:
             - github.com/viqueen/go-modules
             - github.com/stretchr/testify
             - github.com/ovechkin-dm/mockio
+            - github.com/dgraph-io/badger/v4

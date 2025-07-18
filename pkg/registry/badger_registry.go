@@ -1,3 +1,4 @@
+// Package registry provides a generic registry interface for storing and retrieving items.
 package registry
 
 import (
@@ -11,13 +12,14 @@ type badgerRegistry[T any] struct {
 	db *badger.DB
 }
 
+// Error constants for registry operations.
 const (
 	ErrorFailedToOpenDB         = "failed to open database"
 	ErrorFailedToCreateOrUpdate = "failed to create or update item"
 	ErrorFailedToDeleteItem     = "failed to delete item"
 	ErrorFailedToReadItem       = "failed to read item"
 	ErrorFailedToListItems      = "failed to list items"
-	ErrorFailedToListIds        = "failed to list ids"
+	ErrorFailedToListIDs        = "failed to list ids"
 )
 
 // NewBadgerRegistry creates a new Badger registry instance.
@@ -68,14 +70,14 @@ func (b *badgerRegistry[T]) Read(id string) (*Item[T], error) {
 	return &item, nil
 }
 
-func (b *badgerRegistry[T]) Delete(itemId string) (*Item[T], error) {
-	item, err := b.Read(itemId)
+func (b *badgerRegistry[T]) Delete(itemID string) (*Item[T], error) {
+	item, err := b.Read(itemID)
 	if err != nil {
 		return nil, err
 	}
 
 	err = b.db.Update(func(txn *badger.Txn) error {
-		return txn.Delete([]byte(itemId))
+		return txn.Delete([]byte(itemID))
 	})
 	if err != nil {
 		return nil, fmt.Errorf("%s: %w", ErrorFailedToDeleteItem, err)
@@ -143,7 +145,7 @@ func (b *badgerRegistry[T]) ListIDs() ([]string, error) {
 		return nil
 	})
 	if err != nil {
-		return nil, fmt.Errorf("%s: %w", ErrorFailedToListIds, err)
+		return nil, fmt.Errorf("%s: %w", ErrorFailedToListIDs, err)
 	}
 
 	return ids, nil
